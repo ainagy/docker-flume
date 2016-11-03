@@ -12,9 +12,15 @@ RUN mkdir /opt/flume
 RUN wget -qO- http://archive.apache.org/dist/flume/1.7.0/apache-flume-1.7.0-bin.tar.gz \
   | tar zxvf - -C /opt/flume --strip 1
 
+RUN mkdir /opt/zookeeper
+RUN wget -qO- http://archive.apache.org/dist/zookeeper/zookeeper-3.4.5/zookeeper-3.4.5.tar.gz \
+  | tar zxvf - -C /opt/zookeeper --strip 1
+RUN cp /opt/zookeeper/zookeeper-3.4.5.jar /opt/flume/lib
+
 RUN mkdir /var/log/flume
 
 ADD start-flume.sh /opt/flume/bin/start-flume
+RUN chmod +x /opt/flume/bin/start-flume
 
 ENV JAVA_HOME /opt/java
 ENV PATH /opt/flume/bin:/opt/java/bin:$PATH
