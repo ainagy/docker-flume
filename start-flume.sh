@@ -7,6 +7,7 @@ flume-ng agent \
   -c ${FLUME_CONF_DIR} \
   -f ${FLUME_CONF_FILE} \
   -n ${FLUME_AGENT_NAME} \
+  -Dflume.log.dir=/var/log/flume \
   -Dflume.root.logger=DEBUG,LOGFILE
 #-Dflume.root.logger=INFO,console
   
